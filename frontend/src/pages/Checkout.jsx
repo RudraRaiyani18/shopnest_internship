@@ -35,8 +35,12 @@ const Checkout = () => {
         }
       }
 
+      if (!orderData.keyId) {
+        throw new Error('Razorpay key is missing from the backend configuration');
+      }
+
       const options = {
-        key: 'rzp_test_dummykey123', // Student dummy fallback
+        key: orderData.keyId,
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'ShopNest',
